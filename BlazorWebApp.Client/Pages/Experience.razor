@@ -1,0 +1,79 @@
+﻿@page "/experience"
+
+<PageTitle>Experience</PageTitle>
+
+<div style="text-align: center;">
+    <h1 style="color: blue; font-weight: bold;">Experience</h1>
+</div>
+
+<p>Total years of experience: @CalculateTotalExperience()</p>
+
+
+<div id="public-sector">
+<h3>Public Sector (University)</h3>
+<p>Years of Experience in University: @UniversityExperience()</p>
+
+<div id="experience">
+    <h4>Research Assistant</h4>
+    <p>September 2011 - September 2012</p>
+    <p>
+        Implement research related to firms’ financial constraints over the years.<br />
+        Elaboration of and management of dataset with information with the goal to implement econometric modelling.<br />
+        Writing of policy reports with the main findings and presentation of results in seminars.<br />
+        Implement statistical Analysis using SPSS and Stata
+    </p>
+
+    <h4>Research Scientist</h4>
+    <p>September 2011 - April 2015</p>
+    <p>
+        Provide Economic Analysis and reporting.<br />
+            Implement research on Business related topics such as taxation.<br />
+            Implement statistical Analysis using SPSS and Stata.<br />
+    </p>
+
+</div>
+</div>
+
+<div id="private-sector">
+<h3>Private Sector</h3>
+
+<p>Years of Experience in Private Sector: @CalculateTotalIndustryExperience()</p>
+</div>
+@code {
+    // first experience started
+    private DateTime StartWorkExperience = new DateTime(2011, 9, 1);
+    //university experience ended
+    private DateTime EndUniversityExperience = new DateTime(2015, 4, 30);
+    // private sector experience started
+    private DateTime StartIndustryExperience = new DateTime(2015, 12, 1);
+
+    private DateTime CurrentDate = DateTime.Today;
+
+
+    private string CalculateTotalExperience()
+    {
+        TimeSpan experience = CurrentDate - StartWorkExperience;
+        int totalYears = (int)(experience.Days / 365.25);
+        int totalMonths = (int)((experience.Days % 365.25) / 30.436875); // Average days in a month
+        return $"{totalYears} years and {totalMonths} months";
+    }
+
+    private string UniversityExperience()
+    {
+        TimeSpan experience = EndUniversityExperience - StartWorkExperience;
+
+        int totalYears = (int)(experience.Days / 365.25);
+        int totalMonths = (int)((experience.Days % 365.25) / 30.436875); // Average days in a month
+        return $"{totalYears} years and {totalMonths} months";
+    }
+
+    private string CalculateTotalIndustryExperience()
+    {
+        TimeSpan experience = CurrentDate - StartIndustryExperience;
+        int totalYears = (int)(experience.Days / 365.25);
+        int totalMonths = (int)((experience.Days % 365.25) / 30.436875); // Average days in a month
+        return $"{totalYears} years and {totalMonths} months";
+    }
+
+}
+
